@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mahindra Owner Manuals QR Generator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      body {
+        display: flex;
+        height: 100vh;
+        background-color: #ffffff;
+      }
+
+      .sidebar {
+        width: 50%;
+        background-color: #e3f2fd;
+        color: #000000;
+        padding: 20px;
+        overflow-y: auto;
+        border-right: 1px solid #bbdefb;
+      }
+
+      .sidebar h2 {
+        color: #e31e2a;
+        margin-bottom: 20px;
+      }
+
+      .main {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background-color: #ffffff;
+      }
+
+      .dropdown {
+        margin-bottom: 15px;
+        position: relative;
+      }
+
+      .dropdown-btn {
+        width: 100%;
+        padding: 12px 40px 12px 12px;
+        background-color: white;
+        color: #838282;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 4px;
+        transition: all 0.3s;
+        font-weight: bold;
+        position: relative;
+        border: 1px solid #bbdefb;
+      }
+
+      .dropdown-btn:hover {
+        background-color: #f5f5f5;
+      }
+
+      .dropdown-btn i {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.3s;
+        color: #e31e2a;
+      }
+
+      .dropdown-btn.active i {
+        transform: translateY(-50%) rotate(180deg);
+      }
+
+      .dropdown-content {
+        display: none;
+        background-color: #ffffff;
+        padding: 10px;
+        border-radius: 4px;
+        margin-top: 5px;
+        border: 1px solid #bbdefb;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      .dropdown-content a {
+        display: block;
+        color: #838282;
+        padding: 8px 12px;
+        text-decoration: none;
+        margin: 5px 0;
+        border-radius: 3px;
+        transition: all 0.2s;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #1967d2;
+        color: white;
+      }
+
+      .active {
+        display: block;
+      }
+
+      .qr-container {
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 30px;
+        background-color: #e3f2fd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #bbdefb;
+        width: 90%;
+        max-width: 400px;
+      }
+
+      #qr-code {
+        width: 200px;
+        height: 200px;
+        margin: 20px auto;
+        background-color: white;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #bbdefb;
+      }
+
+      .qr-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #e31e2a;
+        font-weight: bold;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .instructions {
+        margin-top: 20px;
+        color: #838282;
+        font-style: italic;
+      }
+
+      .vehicle-category {
+        color: #e31e2a;
+        font-weight: bold;
+        margin: 10px 0 5px 0;
+        padding: 5px 0;
+        border-bottom: 1px dashed #e31e2a;
+      }
+
+      .search-box {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #bbdefb;
+        border-radius: 4px;
+      }
+
+      .no-results {
+        color: #e31e2a;
+        padding: 10px;
+        text-align: center;
+        font-style: italic;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          flex-direction: column;
+          height: auto;
+        }
+        .sidebar, .main {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>Mahindra Owner Manuals QR Generator</h2>
+      <p>Select a vehicle manual to generate QR code</p>
+
+      <div class="dropdown">
+        <button class="dropdown-btn">
+          Owner Manuals
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <input type="text" class="search-box" placeholder="Search vehicle..." id="manual-search">
+          <div id="manuals-list">
+            <!-- SUVs -->
+            <div class="vehicle-category">SUVs</div>
+            <a href="#" data-url="https://www.withyouhamesha.com/owners-manual.aspx#xuv700" data-title="XUV700 Owner Manual">
+              XUV700
+            </a>
+            <a href="#" data-url="https://www.withyouhamesha.com/owners-manual.aspx#xuv300" data-title="XUV300 Owner Manual">
+              XUV300
+            </a>
+            <a href="#" data-url="https://www.withyouhamesha.com/owners-manual.aspx#scorpio-n" data-title="Scorpio-N Owner Manual">
+              Scorpio-N
+            </a>
+            <a href="#" data-url="https://www.withyouhamesha.com/owners-manual.aspx#scorpio-classic" data-title="Scorpio Classic Owner Manual">
+              Scorpio Classic
+            </a>
+            <a href="#" data-url="https://www.withyouhamesha.com/owners-manual.aspx#thar" data-title="Thar Owner Manual">
+              Thar
+            </a>
+            <a href="#" data-url="https://www.withyouhamesha.com/owners-manual.aspx#bolero" data-title="Bolero Owner Manual">
+              Bolero
+            </a>
+            <a href="#" data-url="https://www.withyouhamesha.com/owners-manual.aspx#bolero-neo" data-title="Bolero Neo Owner Manual">
+              Bolero Neo
+            </a>
+        
+            <!-- Pickups & Commercial -->
+            <div class="vehicle-category">Pickups & Commercial</div>
+            <a href="#" data-url="https://www.withyouhamesha.com/owners-manual.aspx#scorpio-pikup" data-title="Scorpio Pikup Owner Manual">
+              Scorpio Pikup
+            </a>
+            <a href="#" data-url="https://www.withyouhamesha.com/owners-manual.aspx#bolero-pikup" data-title="Bolero Pikup Owner Manual">
+              Bolero Pikup
+            </a>
+            <a href="#" data-url="https://www.withyouhamesha.com/owners-manual.aspx#jeeto" data-title="Jeeto Owner Manual">
+              Jeeto
+            </a>
+        
+            <!-- MPVs -->
+            <div class="vehicle-category">MPVs</div>
+            <a href="#" data-url="https://www.withyouhamesha.com/owners-manual.aspx#marazzo" data-title="Marazzo Owner Manual">
+              Marazzo
+            </a>
+            <a href="#" data-url="https://www.withyouhamesha.com/owners-manual.aspx#kuv100-nxt" data-title="KUV100 NXT Owner Manual">
+              KUV100 NXT
+            </a>
+        
+            <!-- Electric Vehicles -->
+            <div class="vehicle-category">Electric Vehicles</div>
+            <a href="#" data-url="https://www.withyouhamesha.com/owners-manual.aspx#xuv400" data-title="XUV400 Electric Owner Manual">
+              XUV400 Electric
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="qr-container">
+        <h3 class="qr-title" id="qr-title">
+          Select a vehicle manual from the sidebar
+        </h3>
+        <div id="qr-code"></div>
+        <p class="instructions">
+          Scan this QR code with your smartphone to access the owner's manual
+        </p>
+      </div>
+    </div>
+
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Toggle dropdown menus
+        document.querySelectorAll(".dropdown-btn").forEach((button) => {
+          button.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const dropdownContent = button.nextElementSibling;
+            dropdownContent.classList.toggle("active");
+            button.classList.toggle("active");
+
+            // Close other dropdowns
+            document.querySelectorAll(".dropdown-content").forEach((content) => {
+              if (content !== dropdownContent) {
+                content.classList.remove("active");
+              }
+            });
+            document.querySelectorAll(".dropdown-btn").forEach((btn) => {
+              if (btn !== button) {
+                btn.classList.remove("active");
+              }
+            });
+          });
+        });
+
+        // Generate QR code when an option is selected
+        document.querySelectorAll(".dropdown-content a").forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const url = link.getAttribute("data-url");
+            const title = link.getAttribute("data-title");
+
+            // Update title
+            document.getElementById("qr-title").textContent = title;
+
+            // Generate QR code
+            generateQRCode(url, title);
+            
+            // Close all dropdowns
+            closeAllDropdowns();
+          });
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener("click", (e) => {
+          if (
+            !e.target.matches(".dropdown-btn") &&
+            !e.target.matches(".dropdown-btn *") &&
+            !e.target.matches(".dropdown-content") &&
+            !e.target.matches(".dropdown-content *")
+          ) {
+            closeAllDropdowns();
+          }
+        });
+
+        // Search functionality
+        const searchBox = document.getElementById('manual-search');
+        searchBox.addEventListener('input', function() {
+          const searchTerm = this.value.toLowerCase();
+          const manuals = document.querySelectorAll('#manuals-list a');
+          let hasResults = false;
+          
+          // Include category headings in search
+          const categories = document.querySelectorAll('.vehicle-category');
+          
+          categories.forEach(category => {
+            const categoryText = category.textContent.toLowerCase();
+            if (categoryText.includes(searchTerm)) {
+              category.style.display = 'block';
+              hasResults = true;
+              // Show all links under this category
+              let nextElement = category.nextElementSibling;
+              while (nextElement && !nextElement.classList.contains('vehicle-category')) {
+                if (nextElement.tagName === 'A') {
+                  nextElement.style.display = 'block';
+                }
+                nextElement = nextElement.nextElementSibling;
+              }
+            } else {
+              category.style.display = 'none';
+            }
+          });
+          
+          manuals.forEach(manual => {
+            const manualText = manual.textContent.toLowerCase();
+            if (manualText.includes(searchTerm)) {
+              manual.style.display = 'block';
+              hasResults = true;
+              // Show the category if a match is found
+              let prevElement = manual.previousElementSibling;
+              while (prevElement) {
+                if (prevElement.classList.contains('vehicle-category')) {
+                  prevElement.style.display = 'block';
+                  break;
+                }
+                prevElement = prevElement.previousElementSibling;
+              }
+            } else {
+              manual.style.display = 'none';
+            }
+          });
+          
+          // Show "no results" message if needed
+          const noResults = document.getElementById('no-results');
+          if (!hasResults) {
+            if (!noResults) {
+              const noResultsDiv = document.createElement('div');
+              noResultsDiv.id = 'no-results';
+              noResultsDiv.className = 'no-results';
+              noResultsDiv.textContent = 'No manuals found matching your search';
+              document.getElementById('manuals-list').appendChild(noResultsDiv);
+            }
+          } else if (noResults) {
+            noResults.remove();
+          }
+        });
+
+        // Generate initial QR code with default message
+        generateQRCode('https://www.withyouhamesha.com/owners-manual.aspx', 'Mahindra Owner Manuals');
+      });
+
+      function generateQRCode(url, title) {
+        document.getElementById("qr-code").innerHTML = "";
+        new QRCode(document.getElementById("qr-code"), {
+          text: url,
+          width: 200,
+          height: 200,
+          colorDark: "#000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
+        
+        // Update the title with a slight animation
+        const titleElement = document.getElementById("qr-title");
+        titleElement.style.opacity = 0;
+        setTimeout(() => {
+          titleElement.textContent = title;
+          titleElement.style.opacity = 1;
+        }, 200);
+      }
+
+      function closeAllDropdowns() {
+        document.querySelectorAll(".dropdown-content").forEach((content) => {
+          content.classList.remove("active");
+        });
+        document.querySelectorAll(".dropdown-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+      }
+    </script>
+  </body>
+</html>
