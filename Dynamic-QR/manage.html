@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage QR Redirects</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Roboto', sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select, button { 
+            padding: 10px; width: 100%; box-sizing: border-box; 
+            border: 1px solid #ccc; border-radius: 4px;
+        }
+        button { background: #e31e2a; color: white; cursor: pointer; }
+        .success { color: green; margin: 10px 0; }
+        .error { color: red; margin: 10px 0; }
+        .redirect-list { margin-top: 30px; }
+        .redirect-item { 
+            padding: 15px; border: 1px solid #ddd; margin-bottom: 10px;
+            border-radius: 4px; background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Manage QR Redirect Destinations</h1>
+    
+    <div id="message"></div>
+    
+    <form id="redirect-form">
+        <div class="form-group">
+            <label for="redirect-id">QR Code ID:</label>
+            <input type="text" id="redirect-id" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="language">Language:</label>
+            <select id="language" required>
+                <option value="english">English</option>
+                <option value="hindi">Hindi</option>
+                <option value="marathi">Marathi</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="destination-url">Destination URL:</label>
+            <input type="url" id="destination-url" required>
+        </div>
+        
+        <button type="submit">Save Redirect</button>
+    </form>
+    
+    <div class="redirect-list" id="redirect-list">
+        <h2>Current Redirect Mappings</h2>
+        <!-- Filled by JavaScript -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadRedirects();
+            
+            document.getElementById('redirect-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveRedirect();
+            });
+        });
+
+        function loadRedirects() {
+            fetch('manage.php?action=get')
+                .then(response => response.json())
+                .then(data => {
+                    const list = document.getElementById('redirect-list');
+                    list.innerHTML = '<h2>Current Redirect Mappings</h2>';
+                    
+                    if (Object.keys(data).length === 0) {
+                        list.innerHTML += '<p>No redirects configured yet</p>';
+                        return;
+                    }
+                    
+                    for (const [id, langs] of Object.entries(data)) {
+                        const item = document.createElement('div');
+                        item.className = 'redirect-item';
+                        item.innerHTML = `<h3>${id}</h3>`;
+                        
+                        for (const [lang, url] of Object.entries(langs)) {
+                            item.innerHTML += `
+                                <p><strong>${lang}:</strong> ${url}</p>
+                                <button onclick="deleteRedirect('${id}', '${lang}')">Delete</button>
+                            `;
+                        }
+                        
+                        list.appendChild(item);
+                    }
+                });
+        }
+
+        function saveRedirect() {
+            const id = document.getElementById('redirect-id').value;
+            const lang = document.getElementById('language').value;
+            const url = document.getElementById('destination-url').value;
+            
+            const formData = new FormData();
+            formData.append('action', 'save');
+            formData.append('id', id);
+            formData.append('lang', lang);
+            formData.append('url', url);
+            
+            fetch('manage.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showMessage('Redirect saved successfully!', 'success');
+                    loadRedirects();
+                } else {
+                    showMessage('Error: ' + data.message, 'error');
+                }
+            });
+        }
+
+        function deleteRedirect(id, lang) {
+            if (!confirm(`Delete ${id} (${lang})?`)) return;
+            
+            const formData = new FormData();
+            formData.append('action', 'delete');
+            formData.append('id', id);
+            formData.append('lang', lang);
+            
+            fetch('manage.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showMessage('Redirect deleted successfully!', 'success');
+                    loadRedirects();
+                } else {
+                    showMessage('Error: ' + data.message, 'error');
+                }
+            });
+        }
+
+        function showMessage(text, type) {
+            const msg = document.getElementById('message');
+            msg.className = type;
+            msg.textContent = text;
+            setTimeout(() => msg.textContent = '', 3000);
+        }
+    </script>
+</body>
+</html>

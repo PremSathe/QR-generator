@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Generator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <div class="left">
+        <img src="./assets/with-you-hamesha.png" alt="" />
+      </div>
+      <div class="right">
+        <i class="fa-solid fa-mobile-screen-button"></i>
+        <span>1800 209 6006</span>
+      </div>
+    </div>
+
+    <div class="hero-section">
+      <div class="sidebar">
+        <h2>Turn Links into Scannable QR Codes!</h2>
+        <p>Select an option to generate QR code</p>
+
+        <div class="radio-group">
+          <div class="radio-option">
+            <input
+              type="radio"
+              id="bs4"
+              name="bs-version"
+              value="BS4"
+              checked
+            />
+            <label for="bs4">BS4 Vehicle</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="bs6" name="bs-version" value="BS6" />
+            <label for="bs6">BS6 Vehicle</label>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropdown-btn">
+            Select Segment
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-content" id="segment-dropdown">
+            <a href="#" data-segment="personal">Personal</a>
+            <a href="#" data-segment="commercial">Commercial</a>
+            <a href="#" data-segment="electrical">Electrical</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropdown-btn">
+            Select Model (Based on selected segment)
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-content" id="model-dropdown">
+            <p style="padding: 10px; color: #666">
+              Please select a segment first
+            </p>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropdown-btn">
+            Select Language<i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a
+              href="#"
+              data-url="https://owner-manual.withyouhamesha.com/manuals/XUV700/XUV700-Owners-Manual.html"
+              data-title="Social Media"
+            >
+              Marathi
+            </a>
+            <a
+              href="#"
+              data-url="https://personal.example.com/portfolio"
+              data-title="Portfolio"
+            >
+              Hindi
+            </a>
+            <a
+              href="#"
+              data-url="https://personal.example.com/contact"
+              data-title="Contact Info"
+            >
+              English
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="qr-container">
+          <h3 class="qr-title" id="qr-title">
+            Select an option from the Dropdown
+          </h3>
+          <div id="qr-code"></div>
+          <p class="instructions">
+            Scan this QR code with your smartphone camera
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

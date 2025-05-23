@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Generator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="icon" href="./assets/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!--------------------------------------- Inline-CSS -------------------------------------->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Roboto", sans-serif;
+      }
+
+      body {
+        height: 100%;
+      }
+
+      .header {
+        background-color: rgba(0, 0, 0, 0.7);
+        width: 100%;
+        height: 75px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin-bottom: 20px;
+        z-index: 50;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .left {
+        margin-left: 22px;
+      }
+      .left img {
+        height: 71px;
+      }
+
+      .right {
+        margin-right: 22px;
+        color: #fff;
+      }
+      .right span {
+        font-family: "Roboto", sans-serif;
+        font-size: 20px;
+      }
+
+      .hero-section {
+        display: flex;
+        height: 100vh;
+      }
+      .sidebar {
+        margin-top: 75px;
+        width: 50%;
+        background-color: #fcfcfb;
+        color: #000000;
+        padding: 20px;
+        padding-top: 0;
+        overflow-y: hidden;
+        border-right: 1px solid #ccc;
+      }
+
+      .sidebar h2 {
+        font-size: 32px;
+        font-weight: 300;
+        color: #e31e2a;
+        position: sticky;
+        top: 0;
+        left: 30px;
+        background: #fcfcfb;
+        z-index: 10;
+        padding-top: 20px;
+      }
+
+      .main {
+        margin-top: 75px;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background-color: #ffffff;
+        background-image: url(./assets/bg.png);
+        background-size: cover;
+      }
+
+      .main img {
+        margin-bottom: 32px;
+      }
+
+      .dropdown {
+        margin-bottom: 15px;
+        position: relative;
+      }
+
+      .dropdown-btn {
+        width: 100%;
+        padding: 12px 40px 12px 12px;
+        background-color: white;
+        color: #000;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 4px;
+        transition: all 0.3s;
+        font-weight: bold;
+        position: relative;
+        border: 1px solid #ccc;
+      }
+
+      .dropdown-btn:hover {
+        background-color: #f5f5f5;
+      }
+
+      .dropdown-btn i {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.3s;
+        color: #e31e2a;
+      }
+
+      .dropdown-btn.active i {
+        transform: translateY(-50%) rotate(180deg);
+      }
+
+      .dropdown-content {
+        display: none;
+        font-size: 14px;
+        background-color: #ffffff;
+        padding: 10px;
+        border-radius: 4px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        max-height: 250px;
+        overflow-y: auto;
+      }
+
+      .dropdown-content a {
+        display: block;
+        color: #000;
+        padding: 8px 12px;
+        text-decoration: none;
+        margin: 5px 0;
+        border-radius: 3px;
+        transition: all 0.2s;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #1967d2;
+        color: white;
+      }
+
+      .active {
+        display: block;
+      }
+
+      .qr-container {
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 30px;
+        background-color: #fcfcfb;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ccc;
+      }
+
+      #qr-code {
+        width: 200px;
+        height: 200px;
+        margin: 20px auto;
+        background-color: white;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ccc;
+      }
+
+      .qr-title {
+        font-size: 34px;
+        margin-bottom: 10px;
+        color: #e31e2a;
+        font-weight: 300;
+      }
+
+      .instructions {
+        margin-top: 20px;
+        color: #838282;
+        font-style: italic;
+      }
+
+      h2 {
+        color: #1967d2;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #ccc;
+        padding-bottom: 10px;
+      }
+
+      p {
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      /* Submenu styles */
+      .dropdown-submenu {
+        position: relative;
+      }
+
+      .dropdown-submenu > a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .dropdown-submenu > a:after {
+        content: "\f054";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        font-size: 12px;
+        color: #e31e2a;
+      }
+
+      .submenu-content {
+        display: none;
+        padding-left: 15px;
+        border-left: 2px solid #ccc;
+        margin-left: 10px;
+      }
+
+      .dropdown-submenu.active > .submenu-content {
+        display: block;
+      }
+
+      .section-title {
+        font-weight: bold;
+        color: #e31e52;
+        margin: 10px 0 5px 0;
+        padding: 5px;
+        background-color: #f5f5f5;
+        border-radius: 3px;
+      }
+
+      /* Radio button styles */
+      .radio-group {
+        /* margin-top: 15px; */
+        font-size: 14px;
+
+        display: flex;
+        gap: 24px;
+        padding: 4px 10px;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        margin-bottom: 15px;
+      }
+
+      .radio-option {
+        margin: 8px 0;
+        display: flex;
+        align-items: center;
+      }
+
+      .radio-option input[type="radio"] {
+        margin-right: 10px;
+      }
+
+      .radio-option label {
+        cursor: pointer;
+      }
+
+      /* Custom scrollbar */
+      .dropdown-content::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .dropdown-content::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+
+      .dropdown-content::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+      }
+
+      .dropdown-content::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      .admin-link {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #e31e2a;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <!------------------------------------ Side-bar Section ------------------------------------>
+    <div class="header">
+      <div class="left">
+        <img src="./assets/with-you-hamesha.png" alt="" />
+      </div>
+      <div class="right">
+        <i class="fa-solid fa-mobile-screen-button"></i>
+        <span>1800 209 6006</span>
+      </div>
+    </div>
+
+    <div class="hero-section">
+      <div class="sidebar">
+        <h2>Turn Links into Scannable QR Codes!</h2>
+        <p>Select an option to generate QR code</p>
+
+        <div class="radio-group">
+          <div class="radio-option">
+            <input
+              type="radio"
+              id="bs4"
+              name="bs-version"
+              value="BS4"
+              checked
+            />
+            <label for="bs4">BS4 Vehicle</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="bs6" name="bs-version" value="BS6" />
+            <label for="bs6">BS6 Vehicle</label>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropdown-btn">
+            Select Segment
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-content" id="segment-dropdown">
+            <a href="#" data-segment="personal">Personal</a>
+            <a href="#" data-segment="commercial">Commercial</a>
+            <a href="#" data-segment="electrical">Electrical</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropdown-btn">
+            Select Model (Based on selected segment)
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-content" id="model-dropdown">
+            <p style="padding: 10px; color: #666">
+              Please select a segment first
+            </p>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropdown-btn">
+            Select Language<i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#" data-lang="marathi">Marathi</a>
+            <a href="#" data-lang="hindi">Hindi</a>
+            <a href="#" data-lang="english">English</a>
+          </div>
+        </div>
+      </div>
+
+      <!------------------------------------- QR code Section ------------------------------------>
+
+      <div class="main">
+        <div class="qr-container">
+          <h3 class="qr-title" id="qr-title">
+            Select an option from the Dropdown
+          </h3>
+          <div id="qr-code"></div>
+          <p class="instructions">
+            Scan this QR code with your smartphone camera
+          </p>
+          <input type="hidden" id="current-redirect-id" value="" />
+        </div>
+      </div>
+    </div>
+
+    <a href="manage.html" class="admin-link">Admin Panel</a>
+
+    <!-------------------------------------  Script Section ------------------------------------>
+
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script>
+      // Define vehicle models for each segment and BS version
+      const vehicleModels = {
+        personal: {
+          BS6: [
+            {
+              name: "XUV3X0",
+              redirectId: "xuv3x0-manual",
+              title: "XUV3X0 Owner Manual",
+            },
+            {
+              name: "XUV400",
+              url: "https://owner-manual.withyouhamesha.com/manuals/XUV400/xuv400-owners-manual.html",
+              title: "XUV400 Owner Manual",
+            },
+            {
+              name: "Scorpio-N",
+              url: "https://owner-manual.withyouhamesha.com/manuals/Scorpio-N/Scorpio-N-Owners-Manual.html",
+              title: "Scorpio-N Owner Manual",
+            },
+            {
+              name: "XUV700",
+              url: "https://owner-manual.withyouhamesha.com/manuals/XUV700/XUV700-Owners-Manual.html",
+              title: "XUV700 Owner Manual",
+            },
+            {
+              name: "Bolero Neo",
+              submodels: [
+                {
+                  name: "Bolero Neo",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/Bolero-neo/Bolero-Neo-Owner-Manual.html",
+                  title: "Bolero Neo Owner Manual",
+                },
+                {
+                  name: "Bolero Neo Plus",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/BOLERO-NEO-PLUS/Bolero-Neo-Plus-Owner-Manual.html",
+                  title: "Bolero Neo Plus Owner Manual",
+                },
+                {
+                  name: "Bolero Neo Plus Ambulance",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/BOLERO-NEO-PLUS-AMBULANCE/Bolero-Neo-Plus-Ambulance-Owner-Manual.html",
+                  title: "Bolero Neo Plus Ambulance Owner Manual",
+                },
+              ],
+            },
+            {
+              name: "XUV 300",
+              submodels: [
+                {
+                  name: "XUV300 Gasoline BS6",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/XUV300-Gasoline-TCMPFI-BS6/XUV300-Gasoline-BS6-owners-manual.html",
+                  title: "XUV300 Gasoline BS6 Owner Manual",
+                },
+                {
+                  name: "XUV300 DI",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/XUV300_DI/index.html",
+                  title: "XUV300 DI Owner Manual",
+                },
+                {
+                  name: "XUV300",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/xuv300/XUV300-Owners-Manual.html",
+                  title: "XUV300 Owner Manual",
+                },
+              ],
+            },
+            {
+              name: "KUV100 BS6 Gasoline",
+              url: "https://owner-manual.withyouhamesha.com/manuals/KUV100-NXT-BS6-Gasoline/KUV100-NXT-BS-VI-Petrol.html",
+              title: "KUV100 BS6 Gasoline Owner Manual",
+            },
+            {
+              name: "XUV500",
+              submodels: [
+                {
+                  name: "XUV500 MT",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/XUV500-MT-BS6/XUV500-MT-BS6-owner-manual.html",
+                  title: "XUV500 MT Owner Manual",
+                },
+                {
+                  name: "XUV500 AT",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/XUV500-AT-BS6/XUV500-AT-BS6-owner-manual.html",
+                  title: "XUV500 AT Owner Manual",
+                },
+              ],
+            },
+            {
+              name: "Scorpio",
+              submodels: [
+                {
+                  name: "Scorpio",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/Scorpio-BS6/scorpio-BS6-owner-manual.html",
+                  title: "Scorpio Owner Manual",
+                },
+                {
+                  name: "Scorpio Classic",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/SCORPIO-CLASSIC/Scorpio-Classic-Owner-Manual.html",
+                  title: "Scorpio Classic Owner Manual",
+                },
+              ],
+            },
+            {
+              name: "Bolero",
+              url: "//https://owner-manual.withyouhamesha.com/manuals/BOLERO/Bolero-Owner-Manual.html",
+              title: "Bolero Owner Manual",
+            },
+            {
+              name: "Thar Roxx",
+              submodels: [
+                {
+                  name: "Thar Roxx",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/THAR%20ROXX/Thar_Roxx-Owners-Manual.html",
+                  title: "Thar Roxx Owner Manual",
+                },
+                {
+                  name: "All New Thar",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/Thar-BS6/thar-BS6-owner-manual.html",
+                  title: "All New Thar Owner Manual",
+                },
+                {
+                  name: "Thar 2WD",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/THAR-2WD/Thar-2WD-Owner-Manual.html",
+                  title: "Thar 2WD Owner Manual",
+                },
+                {
+                  name: "Thar 4WD",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/THAR-4WD/Thar-4WD-Owner-Manual.html",
+                  title: "Thar 4WD Owner Manual",
+                },
+              ],
+            },
+            {
+              name: "Marazzo",
+              url: "https://owner-manual.withyouhamesha.com/manuals/MARAZZO/index.html",
+              title: "Marazzo Owner Manual",
+            },
+            {
+              name: "Alturas G4",
+              url: "https://owner-manual.withyouhamesha.com/manuals/alturasg4/index.html",
+              title: "Alturas G4 Owner Manual",
+            },
+          ],
+          BS4: [
+            {
+              name: "XUV 300",
+              submodels: [
+                {
+                  name: "XUV 300",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/xuv300/xuv300.html",
+                  title: "XUV 300 Owner Manual",
+                },
+                {
+                  name: "XUV 300 auto SHIFT",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/xuv300-auto-shift/XUV300-Autoshift-Owners-Manual.html",
+                  title: "XUV 300 auto SHIFT Owner Manual",
+                },
+              ],
+            },
+
+            {
+              name: "e2o",
+              submodels: [
+                {
+                  name: "e2o-plus-p8",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/e2o-plus-p8/owners-manual-e2o-plus-p8.html",
+                  title: "e2o-plus-p8 Owner Manual",
+                },
+                {
+                  name: "e2o-p2-p4-p6",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/e2o-p2-p4-p6/owners-manual-e2o-p2-p4-p6.html",
+                  title: "e2o-p2-p4-p6",
+                },
+              ],
+            },
+
+            {
+              name: "NuvoSport",
+              url: "https://owner-manual.withyouhamesha.com/manuals/NuvoSport/owners-manual-NuvoSport.html",
+              title: "NuvoSport Owner Manual",
+            },
+
+            {
+              name: "KUV100",
+              submodels: [
+                {
+                  name: "KUV100",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/KUV100/owners-manual-KUV100.html",
+                  title: "KUV100 Owner Manual",
+                },
+                {
+                  name: "KUV NXT",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/KUVNXT/KUVNXT.html",
+                  title: "KUV NXT Owner Manual",
+                },
+                {
+                  name: "KUV 100 Trip",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/KUVNXT/KUV100Trip.html",
+                  title: "KUV 100 Trip Owner Manual",
+                },
+              ],
+            },
+
+            {
+              name: "TUV300",
+              submodels: [
+                {
+                  name: "TUV300",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/TUV300/owners-manual-TUV300.html",
+                  title: "TUV300 Owner Manual",
+                },
+                {
+                  name: "TUV300 Plus",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/TUV300%2B/index.html",
+                  title: "TUV300 Plus Owner Manual",
+                },
+              ],
+            },
+            {
+              name: "XUV500",
+              submodels: [
+                {
+                  name: "XUV500 MT",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/plush-new-XUV500-MT/plush-new-XUV500-MT.html",
+                  title: "XUV500 MT Owner Manual",
+                },
+                {
+                  name: "XUV500 AT",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/XUV500_AT/owners-manual-xuv500-AT.html",
+                  title: "XUV500 AT Owner Manual",
+                },
+                {
+                  name: "XUV500 W6, W8",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/XUV500-W6-W8/owners-manual-XUV500-W6-W8.html",
+                  title: "XUV500 W6, W8 Owner Manual",
+                },
+                {
+                  name: "XUV500 W4",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/XUV-W4/owners-manual-XUV-W4.html",
+                  title: "XUV500 W4 Owner Manual",
+                },
+                {
+                  name: "New Age XUV500 W4",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/New-Age-XUV-W4/owners-manual-XUV-new-age-xuv-W4.html",
+                  title: "New Age XUV500 W4 Owner Manual",
+                },
+                {
+                  name: "XUV500 W6, W8, W10",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/New-Age-XUV500%20W6_W8_W10/owners-manual-XUV500%20W6_W8_W10.html",
+                  title: "XUV500 W6, W8, W10 Owner Manual",
+                },
+                {
+                  name: "Plush New XUV500_MT W5,W7,W9,W11",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/plush-new-XUV500-MT/plush-new-XUV500-MT.html",
+                  title: "Plush New XUV500_MT W5,W7,W9,W11 Owner Manual",
+                },
+                {
+                  name: "Plush New XUV500_AT W7,W9,W11",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/plush-new-XUV500-MT/plush-new-XUV500-AT.html",
+                  title: "Plush New XUV500_AT W7,W9,W11 Owner Manual",
+                },
+                {
+                  name: "Plush New XUV500_Gasoline_AT",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/xuv500-gasoline-AT/xuv500-gasoline-AT.html",
+                  title: "Plush New XUV500_Gasoline_AT Owner Manual",
+                },
+              ],
+            },
+            {
+              name: "Scorpio",
+              submodels: [
+                {
+                  name: "Scorpio S4, S6, S6+, S8, S10",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/SCORPIO-mHawk/owners-manual-SCORPIO-mHawk.html",
+                  title: "Scorpio S4, S6, S6+, S8, S10 Owner Manual",
+                },
+                {
+                  name: "Scorpio S2",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/SCORPIO-LCCR/owners-manual-SCORPIO-LCCR.html",
+                  title: "Scorpio S2 Owner Manual",
+                },
+                {
+                  name: "Scorpio S3",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/scorpio/scorpios3.html",
+                  title: "Scorpio S3 Owner Manual",
+                },
+              ],
+            },
+            {
+              name: "Bolero",
+              submodels: [
+                {
+                  name: "BOLERO ZLX, SLX, SLE, LX",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/BOLERO-ZLX-SLX-SLE-LX/owners-manual-BOLERO-ZLX-SLX-SLE-LX.html",
+                  title: "BOLERO ZLX, SLX, SLE, LX Owner Manual",
+                },
+                {
+                  name: "Bolero ZLX",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/BOLERO-ZLX/owners-manual-BOLERO-ZLX.html",
+                  title: "Bolero ZLX Owner Manual",
+                },
+                {
+                  name: "Bolero Power Plus",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/BoleroPower%2B/index.html",
+                  title: "Bolero Power Plus Owner Manual",
+                },
+              ],
+            },
+            {
+              name: "Thar",
+              url: "https://owner-manual.withyouhamesha.com/manuals/Thar/owners-manual-thar.html",
+              title: "Thar Owner Manual",
+            },
+            {
+              name: "Marazzo",
+              url: "https://owner-manual.withyouhamesha.com/manuals/MARAZZO/index.html",
+              title: "Marazzo Owner Manual",
+            },
+            {
+              name: "Alturas G4",
+              url: "https://owner-manual.withyouhamesha.com/manuals/alturasg4/index.html",
+              title: "Alturas G4 Owner Manual",
+            },
+          ],
+        },
+        commercial: {
+          BS6: [
+            // Add BS6 commercial vehicles here if needed
+          ],
+          BS4: [
+            {
+              name: "Bolero",
+              url: "https://owner-manual.withyouhamesha.com/manuals/BOLERO/Bolero-Owner-Manual.html",
+              title: "Bolero Owner Manual",
+            },
+            {
+              name: "Quanto",
+              url: "https://owner-manual.withyouhamesha.com/manuals/QUANTO/owners-manual-QUANTO.html",
+              title: "Quanto Owner Manual",
+            },
+            {
+              name: "Xylo",
+              submodels: [
+                {
+                  name: "Xylo H Series",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/Xylo-H-Series/owners-manual-XYLO-H-SERIES.html",
+                  title: "Xylo H Series Owner Manual",
+                },
+                {
+                  name: "Xylo D Series",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/Xylo-D-Series/owners-manual-XYLO-D-SERIES.html",
+                  title: "Xylo D Series Owner Manual",
+                },
+              ],
+            },
+            {
+              name: "Verito",
+              submodels: [
+                {
+                  name: "e Verito",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/everito/owners-manual-E-VERITO.html",
+                  title: "e Verito Owner Manual",
+                },
+                {
+                  name: "Verito Vibe",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/Verito-Vibe/owners-manual-verito-vibe.html",
+                  title: "Verito Vibe Owner Manual",
+                },
+                {
+                  name: "Verito Sedan",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/Verito-Sedan/owners-manual-verito-sedan.html",
+                  title: "Verito Sedan Owner Manual",
+                },
+              ],
+            },
+            {
+              name: "TUV300",
+              submodels: [
+                {
+                  name: "TUV300",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/TUV300/owners-manual-TUV300.html",
+                  title: "TUV300 Owner Manual",
+                },
+                {
+                  name: "TUV300 Plus",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/TUV300%2B/index.html",
+                  title: "TUV300 Plus Owner Manual",
+                },
+              ],
+            },
+            {
+              name: "NuvoSport",
+              url: "https://owner-manual.withyouhamesha.com/manuals/NuvoSport/owners-manual-NuvoSport.html",
+              title: "NuvoSport Owner Manual",
+            },
+          ],
+        },
+        electrical: {
+          BS6: [
+            // Add BS6 electrical vehicles here if needed
+          ],
+          BS4: [
+            {
+              name: "e20",
+              submodels: [
+                {
+                  name: "e2o Plus P8",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/e2o-plus-p8/owners-manual-e2o-plus-p8.html",
+                  title: "e2o Plus P8 Owner Manual",
+                },
+                {
+                  name: "e2o P2, P4,P6",
+                  url: "https://owner-manual.withyouhamesha.com/manuals/e2o-p2-p4-p6/owners-manual-e2o-p2-p4-p6.html",
+                  title: "e2o P2, P4,P6 Owner Manual",
+                },
+              ],
+            },
+          ],
+        },
+      };
+
+      // Current selections
+      let currentSegment = "personal";
+      let currentBSVersion = "BS4";
+      let currentLanguage = "english";
+      function generateDynamicQRCode(redirectId, title) {
+        const qrUrl = `${window.location.origin}/redirect.php/${redirectId}-${currentLanguage}`;
+        document.getElementById("qr-title").textContent = title;
+        document.getElementById("current-redirect-id").value = redirectId;
+
+        document.getElementById("qr-code").innerHTML = "";
+        new QRCode(document.getElementById("qr-code"), {
+          text: qrUrl,
+          width: 200,
+          height: 200,
+          colorDark: "#000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
+      }
+
+      // Modified attachModelLinkListeners to use generateDynamicQRCode
+      function attachModelLinkListeners() {
+        document.querySelectorAll("#model-dropdown a").forEach((link) => {
+          if (!link.classList.contains("submenu-toggle")) {
+            link.addEventListener("click", function (e) {
+              e.preventDefault();
+              const redirectId = this.getAttribute("data-redirect-id");
+              const title = this.getAttribute("data-title");
+              generateDynamicQRCode(redirectId, title);
+
+              // Close dropdowns
+              document
+                .querySelectorAll(".dropdown-content")
+                .forEach((content) => {
+                  content.classList.remove("active");
+                });
+              document.querySelectorAll(".dropdown-btn").forEach((btn) => {
+                btn.classList.remove("active");
+              });
+            });
+          }
+        });
+      }
+
+      // Language selection handler
+      document.querySelectorAll("[data-lang]").forEach((lang) => {
+        lang.addEventListener("click", function (e) {
+          e.preventDefault();
+          currentLanguage = this.getAttribute("data-lang");
+          const currentId = document.getElementById(
+            "current-redirect-id"
+          ).value;
+          if (currentId) {
+            generateDynamicQRCode(
+              currentId,
+              document.getElementById("qr-title").textContent
+            );
+          }
+        });
+      });
+
+      updateModelDropdown("personal", "BS4");
+
+      // Segment selection handler
+      document.querySelectorAll("#segment-dropdown a").forEach((segment) => {
+        segment.addEventListener("click", function (e) {
+          e.preventDefault();
+          currentSegment = this.getAttribute("data-segment");
+          updateModelDropdown(currentSegment, currentBSVersion);
+
+          // Update the dropdown button text
+          const dropdownBtn =
+            this.closest(".dropdown").querySelector(".dropdown-btn");
+          dropdownBtn.innerHTML = "Select Model: " + this.textContent;
+          const icon = dropdownBtn.querySelector("i");
+          if (!icon) {
+            const newIcon = document.createElement("i");
+            newIcon.className = "fas fa-chevron-down";
+            dropdownBtn.appendChild(newIcon);
+          } else {
+            dropdownBtn.appendChild(icon);
+          }
+
+          // Close segment dropdown
+          this.closest(".dropdown-content").classList.remove("active");
+          dropdownBtn.classList.remove("active");
+        });
+      });
+
+      // Function to update model dropdown based on selected segment and BS version
+      function updateModelDropdown(segment, bsVersion) {
+        const modelDropdown = document.getElementById("model-dropdown");
+        modelDropdown.innerHTML = ""; // Clear existing options
+
+        if (!vehicleModels[segment] || !vehicleModels[segment][bsVersion]) {
+          const noModelsMsg = document.createElement("p");
+          noModelsMsg.style.padding = "10px";
+          noModelsMsg.style.color = "#666";
+          noModelsMsg.textContent =
+            "No models available for selected segment and BS version";
+          modelDropdown.appendChild(noModelsMsg);
+          return;
+        }
+
+        // Add section title
+        const sectionTitle = document.createElement("div");
+        sectionTitle.className = "section-title";
+        sectionTitle.textContent = `${
+          segment.charAt(0).toUpperCase() + segment.slice(1)
+        } Vehicles (${bsVersion})`;
+        modelDropdown.appendChild(sectionTitle);
+
+        vehicleModels[segment][bsVersion].forEach((vehicle) => {
+          if (vehicle.submodels) {
+            // Create submenu for vehicles with submodels
+            const submenuDiv = document.createElement("div");
+            submenuDiv.className = "dropdown-submenu";
+
+            const submenuToggle = document.createElement("a");
+            submenuToggle.href = "#";
+            submenuToggle.className = "submenu-toggle";
+            submenuToggle.textContent = vehicle.name;
+
+            const submenuContent = document.createElement("div");
+            submenuContent.className = "submenu-content";
+
+            vehicle.submodels.forEach((submodel) => {
+              const submodelLink = document.createElement("a");
+              submodelLink.href = "#";
+              submodelLink.setAttribute("data-url", submodel.url);
+              submodelLink.setAttribute("data-title", submodel.title);
+              submodelLink.textContent = submodel.name;
+              submenuContent.appendChild(submodelLink);
+            });
+
+            submenuDiv.appendChild(submenuToggle);
+            submenuDiv.appendChild(submenuContent);
+            modelDropdown.appendChild(submenuDiv);
+          } else {
+            // Create regular link for vehicles without submodels
+            const vehicleLink = document.createElement("a");
+            vehicleLink.href = "#";
+            vehicleLink.setAttribute("data-url", vehicle.url);
+            vehicleLink.setAttribute("data-title", vehicle.title);
+            vehicleLink.textContent = vehicle.name;
+            modelDropdown.appendChild(vehicleLink);
+          }
+        });
+
+        // Reattach event listeners to new model links and submenu toggles
+        attachModelLinkListeners();
+      }
+
+      // Function to attach click listeners to model links and submenu toggles
+      function attachModelLinkListeners() {
+        // Attach click listeners to regular model links
+        document.querySelectorAll("#model-dropdown a").forEach((link) => {
+          if (!link.classList.contains("submenu-toggle")) {
+            link.addEventListener("click", function (e) {
+              e.preventDefault();
+              const url = this.getAttribute("data-url");
+              const title = this.getAttribute("data-title");
+
+              // Update title
+              document.getElementById("qr-title").textContent = title;
+
+              // Generate QR code
+              document.getElementById("qr-code").innerHTML = "";
+              new QRCode(document.getElementById("qr-code"), {
+                text: url,
+                width: 200,
+                height: 200,
+                colorDark: "#000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H,
+              });
+
+              // Close all dropdowns
+              document
+                .querySelectorAll(".dropdown-content")
+                .forEach((content) => {
+                  content.classList.remove("active");
+                });
+              document.querySelectorAll(".dropdown-btn").forEach((btn) => {
+                btn.classList.remove("active");
+              });
+              document.querySelectorAll(".dropdown-submenu").forEach((sm) => {
+                sm.classList.remove("active");
+              });
+            });
+          }
+        });
+
+        // Attach click listeners to submenu toggle links
+        document
+          .querySelectorAll("#model-dropdown .submenu-toggle")
+          .forEach((link) => {
+            link.addEventListener("click", function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              const submenu = this.parentElement;
+              submenu.classList.toggle("active");
+
+              // Close other submenus in the same dropdown
+              const dropdownContent = submenu.closest(".dropdown-content");
+              if (dropdownContent) {
+                dropdownContent
+                  .querySelectorAll(".dropdown-submenu")
+                  .forEach((sm) => {
+                    if (sm !== submenu) {
+                      sm.classList.remove("active");
+                    }
+                  });
+              }
+            });
+          });
+      }
+
+      // Radio button change handler
+      document.querySelectorAll('input[name="bs-version"]').forEach((radio) => {
+        radio.addEventListener("change", function () {
+          currentBSVersion = this.value;
+          updateModelDropdown(currentSegment, currentBSVersion);
+        });
+      });
+
+      // Toggle dropdown menus
+      document.querySelectorAll(".dropdown-btn").forEach((button) => {
+        button.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const dropdownContent = button.nextElementSibling;
+          dropdownContent.classList.toggle("active");
+          button.classList.toggle("active");
+
+          // Close other dropdowns
+          document.querySelectorAll(".dropdown-content").forEach((content) => {
+            if (content !== dropdownContent) {
+              content.classList.remove("active");
+            }
+          });
+          document.querySelectorAll(".dropdown-btn").forEach((btn) => {
+            if (btn !== button) {
+              btn.classList.remove("active");
+            }
+          });
+        });
+      });
+
+      // Close dropdowns when clicking outside
+      document.addEventListener("click", (e) => {
+        if (
+          !e.target.matches(".dropdown-btn") &&
+          !e.target.matches(".dropdown-btn *") &&
+          !e.target.matches(".dropdown-content a") &&
+          !e.target.matches(".dropdown-content a *") &&
+          !e.target.matches(".dropdown-submenu") &&
+          !e.target.matches(".dropdown-submenu *")
+        ) {
+          document.querySelectorAll(".dropdown-content").forEach((content) => {
+            content.classList.remove("active");
+          });
+          document.querySelectorAll(".dropdown-btn").forEach((btn) => {
+            btn.classList.remove("active");
+          });
+          document.querySelectorAll(".dropdown-submenu").forEach((sm) => {
+            sm.classList.remove("active");
+          });
+        }
+      });
+
+      // Initialize with personal segment and BS4 by default
+      updateModelDropdown("personal", "BS4");
+    </script>
+  </body>
+</html>

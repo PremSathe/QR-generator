@@ -1,0 +1,408 @@
+{
+  "personal": {
+    "BS6": [
+      {
+        "name": "XUV3X0",
+        "url": "https://owner-manual.withyouhamesha.com/manuals/XUV3X0/XUV3X0-Owners-Manual.html",
+        "title": "XUV3X0 Owner Manual"
+      },
+      {
+        "name": "XUV400",
+        "url": "https://owner-manual.withyouhamesha.com/manuals/XUV400/xuv400-owners-manual.html",
+        "title": "XUV400 Owner Manual"
+      },
+      {
+        "name": "Scorpio-N",
+        "url": "https://owner-manual.withyouhamesha.com/manuals/Scorpio-N/Scorpio-N-Owners-Manual.html",
+        "title": "Scorpio-N Owner Manual"
+      },
+      {
+        "name": "XUV700",
+        "url": "https://owner-manual.withyouhamesha.com/manuals/XUV700/XUV700-Owners-Manual.html",
+        "title": "XUV700 Owner Manual"
+      },
+      {
+        "name": "Bolero Neo",
+        "submodels": [
+          {
+            "name": "Bolero Neo",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/Bolero-neo/Bolero-Neo-Owner-Manual.html",
+            "title": "Bolero Neo Owner Manual"
+          },
+          {
+            "name": "Bolero Neo Plus",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/BOLERO-NEO-PLUS/Bolero-Neo-Plus-Owner-Manual.html",
+            "title": "Bolero Neo Plus Owner Manual"
+          },
+          {
+            "name": "Bolero Neo Plus Ambulance",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/BOLERO-NEO-PLUS-AMBULANCE/Bolero-Neo-Plus-Ambulance-Owner-Manual.html",
+            "title": "Bolero Neo Plus Ambulance Owner Manual"
+          }
+        ]
+      },
+      {
+        "name": "XUV 300",
+        "submodels": [
+          {
+            "name": "XUV300 Gasoline BS6",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/XUV300-Gasoline-TCMPFI-BS6/XUV300-Gasoline-BS6-owners-manual.html",
+            "title": "XUV300 Gasoline BS6 Owner Manual"
+          },
+          {
+            "name": "XUV300 DI",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/XUV300_DI/index.html",
+            "title": "XUV300 DI Owner Manual"
+          },
+          {
+            "name": "XUV300",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/xuv300/XUV300-Owners-Manual.html",
+            "title": "XUV300 Owner Manual"
+          }
+        ]
+      },
+      {
+        "name": "KUV100 BS6 Gasoline",
+        "url": "https://owner-manual.withyouhamesha.com/manuals/KUV100-NXT-BS6-Gasoline/KUV100-NXT-BS-VI-Petrol.html",
+        "title": "KUV100 BS6 Gasoline Owner Manual"
+      },
+      {
+        "name": "XUV500",
+        "submodels": [
+          {
+            "name": "XUV500 MT",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/XUV500-MT-BS6/XUV500-MT-BS6-owner-manual.html",
+            "title": "XUV500 MT Owner Manual"
+          },
+          {
+            "name": "XUV500 AT",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/XUV500-AT-BS6/XUV500-AT-BS6-owner-manual.html",
+            "title": "XUV500 AT Owner Manual"
+          }
+        ]
+      },
+      {
+        "name": "Scorpio",
+        "submodels": [
+          {
+            "name": "Scorpio",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/Scorpio-BS6/scorpio-BS6-owner-manual.html",
+            "title": "Scorpio Owner Manual"
+          },
+          {
+            "name": "Scorpio Classic",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/SCORPIO-CLASSIC/Scorpio-Classic-Owner-Manual.html",
+            "title": "Scorpio Classic Owner Manual"
+          }
+        ]
+      },
+      {
+        "name": "Bolero",
+        "url": "https://owner-manual.withyouhamesha.com/manuals/BOLERO/Bolero-Owner-Manual.html",
+        "title": "Bolero Owner Manual"
+      },
+      {
+        "name": "Thar Roxx",
+        "submodels": [
+          {
+            "name": "Thar Roxx",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/THAR%20ROXX/Thar_Roxx-Owners-Manual.html",
+            "title": "Thar Roxx Owner Manual"
+          },
+          {
+            "name": "All New Thar",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/Thar-BS6/thar-BS6-owner-manual.html",
+            "title": "All New Thar Owner Manual"
+          },
+          {
+            "name": "Thar 2WD",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/THAR-2WD/Thar-2WD-Owner-Manual.html",
+            "title": "Thar 2WD Owner Manual"
+          },
+          {
+            "name": "Thar 4WD",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/THAR-4WD/Thar-4WD-Owner-Manual.html",
+            "title": "Thar 4WD Owner Manual"
+          }
+        ]
+      },
+      {
+        "name": "Marazzo",
+        "url": "https://owner-manual.withyouhamesha.com/manuals/MARAZZO/index.html",
+        "title": "Marazzo Owner Manual"
+      },
+      {
+        "name": "Alturas G4",
+        "url": "https://owner-manual.withyouhamesha.com/manuals/alturasg4/index.html",
+        "title": "Alturas G4 Owner Manual"
+      }
+    ],
+    "BS4": [
+      {
+        "name": "XUV 300",
+        "submodels": [
+          {
+            "name": "XUV 300",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/xuv300/xuv300.html",
+            "title": "XUV 300 Owner Manual"
+          },
+          {
+            "name": "XUV 300 auto SHIFT",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/xuv300-auto-shift/XUV300-Autoshift-Owners-Manual.html",
+            "title": "XUV 300 auto SHIFT Owner Manual"
+          }
+        ]
+      },
+      {
+        "name": "e2o",
+        "submodels": [
+          {
+            "name": "e2o-plus-p8",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/e2o-plus-p8/owners-manual-e2o-plus-p8.html",
+            "title": "e2o-plus-p8 Owner Manual"
+          },
+          {
+            "name": "e2o-p2-p4-p6",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/e2o-p2-p4-p6/owners-manual-e2o-p2-p4-p6.html",
+            "title": "e2o-p2-p4-p6"
+          }
+        ]
+      },
+      {
+        "name": "NuvoSport",
+        "url": "https://owner-manual.withyouhamesha.com/manuals/NuvoSport/owners-manual-NuvoSport.html",
+        "title": "NuvoSport Owner Manual"
+      },
+      {
+        "name": "KUV100",
+        "submodels": [
+          {
+            "name": "KUV100",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/KUV100/owners-manual-KUV100.html",
+            "title": "KUV100 Owner Manual"
+          },
+          {
+            "name": "KUV NXT",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/KUVNXT/KUVNXT.html",
+            "title": "KUV NXT Owner Manual"
+          },
+          {
+            "name": "KUV 100 Trip",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/KUVNXT/KUV100Trip.html",
+            "title": "KUV 100 Trip Owner Manual"
+          }
+        ]
+      },
+      {
+        "name": "TUV300",
+        "submodels": [
+          {
+            "name": "TUV300",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/TUV300/owners-manual-TUV300.html",
+            "title": "TUV300 Owner Manual"
+          },
+          {
+            "name": "TUV300 Plus",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/TUV300%2B/index.html",
+            "title": "TUV300 Plus Owner Manual"
+          }
+        ]
+      },
+      {
+        "name": "XUV500",
+        "submodels": [
+          {
+            "name": "XUV500 MT",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/plush-new-XUV500-MT/plush-new-XUV500-MT.html",
+            "title": "XUV500 MT Owner Manual"
+          },
+          {
+            "name": "XUV500 AT",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/XUV500_AT/owners-manual-xuv500-AT.html",
+            "title": "XUV500 AT Owner Manual"
+          },
+          {
+            "name": "XUV500 W6, W8",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/XUV500-W6-W8/owners-manual-XUV500-W6-W8.html",
+            "title": "XUV500 W6, W8 Owner Manual"
+          },
+          {
+            "name": "XUV500 W4",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/XUV-W4/owners-manual-XUV-W4.html",
+            "title": "XUV500 W4 Owner Manual"
+          },
+          {
+            "name": "New Age XUV500 W4",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/New-Age-XUV-W4/owners-manual-XUV-new-age-xuv-W4.html",
+            "title": "New Age XUV500 W4 Owner Manual"
+          },
+          {
+            "name": "XUV500 W6, W8, W10",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/New-Age-XUV500%20W6_W8_W10/owners-manual-XUV500%20W6_W8_W10.html",
+            "title": "XUV500 W6, W8, W10 Owner Manual"
+          },
+          {
+            "name": "Plush New XUV500_MT W5,W7,W9,W11",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/plush-new-XUV500-MT/plush-new-XUV500-MT.html",
+            "title": "Plush New XUV500_MT W5,W7,W9,W11 Owner Manual"
+          },
+          {
+            "name": "Plush New XUV500_AT W7,W9,W11",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/plush-new-XUV500-MT/plush-new-XUV500-AT.html",
+            "title": "Plush New XUV500_AT W7,W9,W11 Owner Manual"
+          },
+          {
+            "name": "Plush New XUV500_Gasoline_AT",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/xuv500-gasoline-AT/xuv500-gasoline-AT.html",
+            "title": "Plush New XUV500_Gasoline_AT Owner Manual"
+          }
+        ]
+      },
+      {
+        "name": "Scorpio",
+        "submodels": [
+          {
+            "name": "Scorpio S4, S6, S6+, S8, S10",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/SCORPIO-mHawk/owners-manual-SCORPIO-mHawk.html",
+            "title": "Scorpio S4, S6, S6+, S8, S10 Owner Manual"
+          },
+          {
+            "name": "Scorpio S2",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/SCORPIO-LCCR/owners-manual-SCORPIO-LCCR.html",
+            "title": "Scorpio S2 Owner Manual"
+          },
+          {
+            "name": "Scorpio S3",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/scorpio/scorpios3.html",
+            "title": "Scorpio S3 Owner Manual"
+          }
+        ]
+      },
+      {
+        "name": "Bolero",
+        "submodels": [
+          {
+            "name": "BOLERO ZLX, SLX, SLE, LX",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/BOLERO-ZLX-SLX-SLE-LX/owners-manual-BOLERO-ZLX-SLX-SLE-LX.html",
+            "title": "BOLERO ZLX, SLX, SLE, LX Owner Manual"
+          },
+          {
+            "name": "Bolero ZLX",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/BOLERO-ZLX/owners-manual-BOLERO-ZLX.html",
+            "title": "Bolero ZLX Owner Manual"
+          },
+          {
+            "name": "Bolero Power Plus",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/BoleroPower%2B/index.html",
+            "title": "Bolero Power Plus Owner Manual"
+          }
+        ]
+      },
+      {
+        "name": "Thar",
+        "url": "https://owner-manual.withyouhamesha.com/manuals/Thar/owners-manual-thar.html",
+        "title": "Thar Owner Manual"
+      },
+      {
+        "name": "Marazzo",
+        "url": "https://owner-manual.withyouhamesha.com/manuals/MARAZZO/index.html",
+        "title": "Marazzo Owner Manual"
+      },
+      {
+        "name": "Alturas G4",
+        "url": "https://owner-manual.withyouhamesha.com/manuals/alturasg4/index.html",
+        "title": "Alturas G4 Owner Manual"
+      }
+    ]
+  },
+  "commercial": {
+    "BS6": [],
+    "BS4": [
+      {
+        "name": "Bolero",
+        "url": "https://owner-manual.withyouhamesha.com/manuals/BOLERO/Bolero-Owner-Manual.html",
+        "title": "Bolero Owner Manual"
+      },
+      {
+        "name": "Quanto",
+        "url": "https://owner-manual.withyouhamesha.com/manuals/QUANTO/owners-manual-QUANTO.html",
+        "title": "Quanto Owner Manual"
+      },
+      {
+        "name": "Xylo",
+        "submodels": [
+          {
+            "name": "Xylo H Series",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/Xylo-H-Series/owners-manual-XYLO-H-SERIES.html",
+            "title": "Xylo H Series Owner Manual"
+          },
+          {
+            "name": "Xylo D Series",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/Xylo-D-Series/owners-manual-XYLO-D-SERIES.html",
+            "title": "Xylo D Series Owner Manual"
+          }
+        ]
+      },
+      {
+        "name": "Verito",
+        "submodels": [
+          {
+            "name": "e Verito",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/everito/owners-manual-E-VERITO.html",
+            "title": "e Verito Owner Manual"
+          },
+          {
+            "name": "Verito Vibe",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/Verito-Vibe/owners-manual-verito-vibe.html",
+            "title": "Verito Vibe Owner Manual"
+          },
+          {
+            "name": "Verito Sedan",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/Verito-Sedan/owners-manual-verito-sedan.html",
+            "title": "Verito Sedan Owner Manual"
+          }
+        ]
+      },
+      {
+        "name": "TUV300",
+        "submodels": [
+          {
+            "name": "TUV300",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/TUV300/owners-manual-TUV300.html",
+            "title": "TUV300 Owner Manual"
+          },
+          {
+            "name": "TUV300 Plus",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/TUV300%2B/index.html",
+            "title": "TUV300 Plus Owner Manual"
+          }
+        ]
+      },
+      {
+        "name": "NuvoSport",
+        "url": "https://owner-manual.withyouhamesha.com/manuals/NuvoSport/owners-manual-NuvoSport.html",
+        "title": "NuvoSport Owner Manual"
+      }
+    ]
+  },
+  "electrical": {
+    "BS6": [],
+    "BS4": [
+      {
+        "name": "e20",
+        "submodels": [
+          {
+            "name": "e2o Plus P8",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/e2o-plus-p8/owners-manual-e2o-plus-p8.html",
+            "title": "e2o Plus P8 Owner Manual"
+          },
+          {
+            "name": "e2o P2, P4,P6",
+            "url": "https://owner-manual.withyouhamesha.com/manuals/e2o-p2-p4-p6/owners-manual-e2o-p2-p4-p6.html",
+            "title": "e2o P2, P4,P6 Owner Manual"
+          }
+        ]
+      }
+    ]
+  }
+}
